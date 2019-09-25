@@ -1,27 +1,32 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Text,
   StyleSheet,
   View,
   SafeAreaView,
-  TouchableOpacity
-} from "react-native";
-import { Button } from "react-native-paper";
-import { Ionicons } from "@expo/vector-icons";
+  TouchableOpacity,
+  ScrollView
+} from 'react-native';
+import { useDarkModeContext } from 'react-native-dark-mode';
+import FridgeButton from '../components/Button/FridgeButton';
 
 export default class TodayContainer extends Component {
   render() {
     const { navigation } = this.props;
+    // const isDarkMode = useDarkMode();
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
-        <View style={styles.container}>
-          <View style={styles.header}>
-            <Text style={styles.title}>Today</Text>
-            <TouchableOpacity onPress={() => navigation.navigate("Fridge")}>
-              <Ionicons name="ios-archive" size={32} />
-            </TouchableOpacity>
+      <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentInset={{ bottom: 100 }}
+        >
+          <View style={styles.container}>
+            <View style={styles.header}>
+              <Text style={styles.title}>Today</Text>
+              <FridgeButton navigation={navigation} />
+            </View>
           </View>
-        </View>
+        </ScrollView>
       </SafeAreaView>
     );
   }
@@ -31,17 +36,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 60,
-    paddingHorizontal: 20,
-    backgroundColor: "#fff"
+    paddingHorizontal: 20
   },
   header: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between"
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
   title: {
     fontSize: 32,
-    fontWeight: "bold",
-    fontFamily: "SFProDisplay-Bold"
+    fontWeight: 'bold',
+    fontFamily: 'SFProDisplay-Bold'
   }
 });

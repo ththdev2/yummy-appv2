@@ -1,13 +1,10 @@
-import React, { Component } from "react";
-import * as Font from "expo-font";
-import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  ActivityIndicator
-} from "react-native";
-import AppNavigator from "./src/navigation/AppNavigator";
+import React, { Component } from 'react';
+import * as Font from 'expo-font';
+import { StyleSheet, View, StatusBar } from 'react-native';
+import AppNavigator from './src/navigation/AppNavigator';
+import { Provider } from 'mobx-react';
+import UserStore from './src/store/UserStore';
+import Loading from './src/components/Base/Loading';
 
 export default class App extends Component {
   constructor() {
@@ -18,20 +15,19 @@ export default class App extends Component {
   }
   async componentDidMount() {
     await Font.loadAsync({
-      "SFProDisplay-Bold": require("./src/fonts/SF-Pro-Display-Bold.otf")
+      'SFProDisplay-Bold': require('./src/fonts/SF-Pro-Display-Bold.otf')
     });
     this.setState({ fontLoaded: true });
   }
 
   render() {
     return (
-      <View style={styles.container}>
-        {this.state.fontLoaded ? (
-          <AppNavigator />
-        ) : (
-          <ActivityIndicator size="large" />
-        )}
-      </View>
+      <Provider userStore={UserStore}>
+        <View style={styles.container}>
+          <StatusBar barStyle="dark-content" />
+          {this.state.fontLoaded ? <AppNavigator /> : <Loading />}
+        </View>
+      </Provider>
     );
   }
 }
