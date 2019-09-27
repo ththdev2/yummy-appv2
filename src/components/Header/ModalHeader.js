@@ -4,9 +4,10 @@ import CloseButton from '../Button/CloseButton';
 
 export default class ModalHeader extends Component {
   render() {
-    const { navigation } = this.props;
+    const { navigation, title } = this.props;
     return (
       <View style={styles.container}>
+        <Text style={styles.title}>{title}</Text>
         <CloseButton navigation={navigation} />
       </View>
     );
@@ -18,12 +19,12 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 72,
     paddingHorizontal: 20,
-    flexDirection: 'row-reverse',
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between'
   },
   title: {
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold'
   }
 });

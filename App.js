@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import * as Font from 'expo-font';
 import { StyleSheet, View, StatusBar } from 'react-native';
 import AppNavigator from './src/navigation/AppNavigator';
 import { Provider } from 'mobx-react';
@@ -14,9 +13,6 @@ export default class App extends Component {
     };
   }
   async componentDidMount() {
-    await Font.loadAsync({
-      'SFProDisplay-Bold': require('./src/fonts/SF-Pro-Display-Bold.otf')
-    });
     this.setState({ fontLoaded: true });
   }
 

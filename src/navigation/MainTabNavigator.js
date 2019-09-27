@@ -6,6 +6,8 @@ import {
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { Platform } from 'react-native';
 import TabBarIcon from '../components/tabBarIcon';
+import i18n from '../I18n/i18n';
+import Colors from '../constants/Colors';
 
 import Today from '../containers/TodayContainer';
 import Liked from '../containers/LikedContainer';
@@ -46,54 +48,33 @@ const CartStack = createStackNavigator({ Cart }, config);
 const ProfileStack = createStackNavigator({ Profile, NewRecipe }, configModal);
 
 TodayStack.navigationOptions = ({ navigation }) => ({
-  tabBarLabel: 'Today',
+  tabBarLabel: i18n.t('Today'),
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-today' : 'md-today'}
-    />
+    <TabBarIcon focused={focused} name="clipboard" />
   ),
   tabBarVisible: navigation.state.index === 0
 });
 
 LikedStack.navigationOptions = {
-  tabBarLabel: 'Liked',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-heart-empty' : 'md-heart-empty'}
-    />
-  )
+  tabBarLabel: i18n.t('Liked'),
+  tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="heart" />
 };
 
 RecipeStack.navigationOptions = {
-  tabBarLabel: 'Recipe',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-book' : 'md-book'}
-    />
-  )
+  tabBarLabel: i18n.t('Recipe'),
+  tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="book-open" />
 };
 
 CartStack.navigationOptions = {
-  tabBarLabel: 'Cart',
+  tabBarLabel: i18n.t('Bag'),
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-basket' : 'md-basket'}
-    />
+    <TabBarIcon focused={focused} name="shopping-bag" />
   )
 };
 
 ProfileStack.navigationOptions = ({ navigation }) => ({
-  tabBarLabel: 'Profile',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-person' : 'md-person'}
-    />
-  ),
+  tabBarLabel: i18n.t('Profile'),
+  tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="user" />,
   tabBarVisible: navigation.state.index === 0
 });
 
@@ -106,7 +87,7 @@ const tabNavigator = createBottomTabNavigator(
     ProfileStack
   },
   {
-    tabBarOptions: { activeTintColor: '#037986' }
+    tabBarOptions: { activeTintColor: Colors.tint }
   }
 );
 

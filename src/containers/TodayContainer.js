@@ -7,27 +7,23 @@ import {
   TouchableOpacity,
   ScrollView
 } from 'react-native';
-import { useDarkModeContext } from 'react-native-dark-mode';
 import FridgeButton from '../components/Button/FridgeButton';
+import Scroll from '../components/Layout/Scroll';
+import textStyles from '../constants/TextStyles';
 
 export default class TodayContainer extends Component {
   render() {
     const { navigation } = this.props;
     // const isDarkMode = useDarkMode();
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          contentInset={{ bottom: 100 }}
-        >
-          <View style={styles.container}>
-            <View style={styles.header}>
-              <Text style={styles.title}>Today</Text>
-              <FridgeButton navigation={navigation} />
-            </View>
+      <Scroll>
+        <View style={styles.container}>
+          <View style={styles.header}>
+            <Text style={textStyles.title}>Today</Text>
+            <FridgeButton navigation={navigation} />
           </View>
-        </ScrollView>
-      </SafeAreaView>
+        </View>
+      </Scroll>
     );
   }
 }
@@ -42,10 +38,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between'
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    fontFamily: 'SFProDisplay-Bold'
   }
 });

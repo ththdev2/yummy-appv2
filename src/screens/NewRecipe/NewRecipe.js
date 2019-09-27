@@ -26,7 +26,7 @@ export default class NewRecipe extends Component {
           </TouchableOpacity>
           <ProgressBar
             progress={0.5}
-            color={Colors.mainColor}
+            color={Colors.tint}
             style={styles.progressBar}
           />
           <View style={styles.header}>

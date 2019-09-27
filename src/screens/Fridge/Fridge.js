@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { Text, StyleSheet, View, SafeAreaView, StatusBar } from 'react-native';
 import ModalHeader from '../../components/Header/ModalHeader';
-import Title from '../../components/Base/Title';
+import Scroll from '../../components/Layout/Scroll';
+import Summary from '../../components/Fridge/Summary';
+import List from '../../components/Fridge/List';
 
 export default class Fridge extends Component {
   render() {
     const { navigation } = this.props;
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <Scroll header={<ModalHeader title="Fridge" navigation={navigation} />}>
         <StatusBar barStyle="light-content" />
-        <ModalHeader navigation={navigation} />
-        <View style={styles.container}>
-          <Title>Fridge</Title>
-        </View>
-      </SafeAreaView>
+        <Summary />
+        <List />
+      </Scroll>
     );
   }
 }

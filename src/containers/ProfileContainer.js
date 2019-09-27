@@ -9,7 +9,8 @@ import {
 } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import ProfileImage from '../components/Profile/ProfileImage';
-import SettingList from '../components/Settings/SettingList';
+import SettingList from '../components/Profile/SettingList';
+import textStyles from '../constants/TextStyles';
 
 @inject('userStore')
 @observer
@@ -27,12 +28,7 @@ export default class ProfileContainer extends Component {
         >
           <View style={styles.container}>
             <View style={styles.header}>
-              <View>
-                <Text style={styles.title}>{userStore.name}</Text>
-                <TouchableOpacity>
-                  <Text style={styles.details}>View Profile</Text>
-                </TouchableOpacity>
-              </View>
+              <Text style={textStyles.title}>{userStore.name}</Text>
               <ProfileImage />
             </View>
             <SettingList navigation={navigation} />

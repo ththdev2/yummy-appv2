@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import { Text, StyleSheet, View } from 'react-native';
-import Loading from '../components/Base/Loading';
+import textStyles from '../../constants/TextStyles';
 
-export default class AppLoading extends Component {
-  componentDidMount = () => {
-    const { navigation } = this.props;
-    navigation.navigate('Recipe');
-  };
-
+export default class Empty extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Loading />
+        <Text style={textStyles.medium}>Nothing Here 🙈</Text>
       </View>
     );
   }
@@ -19,7 +14,7 @@ export default class AppLoading extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: 100,
     justifyContent: 'center',
     alignItems: 'center'
   }
