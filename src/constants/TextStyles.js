@@ -15,18 +15,18 @@ const textStyles = StyleSheet.create({
   small: {
     fontSize: 14,
     fontWeight: '500',
-    color: Colors.gray500
+    color: Colors.gray00
   },
   summaryLabel: {
     fontSize: 16,
     fontWeight: '500',
-    color: Colors.gray500,
+    color: Colors.gray00,
     marginBottom: 10
   },
   settingLabel: {
     fontSize: 14,
     fontWeight: '500',
-    color: Colors.gray500
+    color: Colors.gray00
   }
 });
 

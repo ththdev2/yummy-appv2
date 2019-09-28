@@ -7,11 +7,22 @@ import {
 
 import AppLoading from '../screens/AppLoading';
 import Login from '../screens/Login/Login';
+import Register from '../screens/Register/Register';
+
+const Auth = createStackNavigator(
+  {
+    Login,
+    Register
+  },
+  {
+    headerMode: 'none'
+  }
+);
 
 export default createAppContainer(
   createSwitchNavigator({
     AppLoading,
-    Login,
+    Auth,
     Main: MainTabNavigator
   })
 );

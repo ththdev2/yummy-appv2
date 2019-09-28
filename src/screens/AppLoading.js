@@ -5,7 +5,7 @@ import Loading from '../components/Base/Loading';
 export default class AppLoading extends Component {
   componentDidMount = () => {
     const { navigation } = this.props;
-    navigation.navigate('Recipe');
+    navigation.navigate('Login');
   };
 
   render() {

@@ -20,6 +20,6 @@ const styles = StyleSheet.create({
     borderRadius: 40 / 2,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: Colors.gray50
+    backgroundColor: Colors.gray0
   }
 });
