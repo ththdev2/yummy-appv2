@@ -4,18 +4,13 @@ export default class RegisterStore {
   constructor(root) {
     this.root = root;
   }
+
+  @observable step = 0;
+
   @observable name = '';
   @observable birth = '';
   @observable email = '';
   @observable password = '';
-  @observable disabled = false;
-  @observable step = 0;
-  @observable inputs = [
-    { name: 'name', label: 'Name', value: this.name },
-    { name: 'birth', label: 'Date of Birth', value: this.birth },
-    { name: 'email', label: 'Email', value: this.email },
-    { name: 'password', label: 'Password', value: this.password }
-  ];
 
   @action.bound
   onChange = (name, value) => {
@@ -23,7 +18,7 @@ export default class RegisterStore {
   };
 
   @action
-  increaseStep = () => {
+  onSubmit = () => {
     if (this.step > 2) {
       return null;
     }
@@ -32,7 +27,4 @@ export default class RegisterStore {
 
   @action
   register = () => {};
-
-  @action
-  check = () => {};
 }
