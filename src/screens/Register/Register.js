@@ -6,8 +6,12 @@ import Icon from 'react-native-vector-icons/Feather';
 
 import CardStackHeader from '../../components/Header/CardStackHeader';
 import FormTemplate from '../../components/Register/FormTemplate';
-import SubmitButton from '../../components/Register/SubmitButton';
-import Form from '../../components/Register/Form';
+
+const BackButton = () => {
+  return (
+    <Icon name="chevron-left" size={36} onPress={() => navigation.goBack()} />
+  );
+};
 
 export default class Register extends Component {
   render() {
@@ -15,17 +19,8 @@ export default class Register extends Component {
     return (
       <View style={styles.container}>
         {/* Header */}
-        <CardStackHeader
-          left={
-            <Icon
-              name="chevron-left"
-              size={36}
-              onPress={() => navigation.goBack()}
-            />
-          }
-        />
+        <CardStackHeader left={<BackButton />} />
         <FormTemplate />
-        <SubmitButton />
       </View>
     );
   }

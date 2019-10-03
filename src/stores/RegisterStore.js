@@ -5,26 +5,35 @@ export default class RegisterStore {
     this.root = root;
   }
 
-  @observable step = 0;
-
-  @observable name = '';
-  @observable birth = '';
-  @observable email = '';
-  @observable password = '';
+  @observable step = 4;
+  @observable values = {
+    name: '',
+    birth: new Date(),
+    email: '',
+    password: ''
+  };
+  @observable canSubmit = false;
 
   @action.bound
-  onChange = (name, value) => {
-    this[name] = value;
+  onChange = (name, value, rules) => {
+    this.values[name] = value;
+
+    this.check(rules);
   };
 
   @action
   onSubmit = () => {
-    if (this.step > 2) {
-      return null;
-    }
-    this.step++;
+    this.step < 4 ? this.step++ : this.register();
+    this.canSubmit = false;
   };
 
   @action
-  register = () => {};
+  check(rules) {
+    console.log(rules);
+  }
+
+  @action
+  register = () => {
+    console.log('Register');
+  };
 }

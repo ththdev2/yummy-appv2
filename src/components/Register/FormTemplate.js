@@ -1,28 +1,53 @@
 import React, { Component } from 'react';
 import { Text, StyleSheet, View, ScrollView } from 'react-native';
 import { inject, observer } from 'mobx-react';
-import textStyles from '../../constants/TextStyles';
-import Form from './Form';
+import { FormMessage, FormTextInput, FormDateInput, FormSubmit } from './Form';
 
-const messages = [
-  "What's your name?",
-  "What's date of birth",
-  'Please enter your email',
-  'Please enter password'
+const forms = [
+  <FormTextInput
+    key="name"
+    name="name"
+    label="Name"
+    type="default"
+    rules={value => value == ''}
+  />,
+  <FormDateInput
+    key="birth"
+    name="date"
+    label="Birth of Date"
+    rules={value => value == ''}
+  />,
+  <FormTextInput
+    key="email"
+    name="email"
+    label="Email"
+    type="email-address"
+    rules={value => value == ''}
+  />,
+  <FormTextInput
+    key="password"
+    name="password"
+    label="Password"
+    type="default"
+    secure={true}
+    rules={value => value == ''}
+  />
 ];
 
 @inject('register')
 @observer
 export default class FormTemplate extends Component {
   render() {
-    const { register } = this.props;
-    const { step } = register;
+    const { step } = this.props.register;
+    const activeForms = forms.map((form, index) => {
+      return index <= step ? form : null;
+    });
     return (
-      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-        <View style={styles.message}>
-          <Text style={textStyles.compact}>{messages[step]}</Text>
+      <ScrollView>
+        <View style={styles.container}>
+          <FormMessage />
+          <View style={styles.reverse}>{activeForms}</View>
         </View>
-        <Form />
       </ScrollView>
     );
   }
@@ -32,7 +57,7 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 20
   },
-  message: {
-    marginBottom: 30
+  reverse: {
+    flexDirection: 'column-reverse'
   }
 });
