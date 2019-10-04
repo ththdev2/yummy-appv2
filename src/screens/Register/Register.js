@@ -5,7 +5,7 @@ import textStyles from '../../constants/TextStyles';
 import Icon from 'react-native-vector-icons/Feather';
 
 import CardStackHeader from '../../components/Header/CardStackHeader';
-import FormTemplate from '../../components/Register/FormTemplate';
+import Form from '../../components/Register/Form';
 
 const BackButton = () => {
   return (
@@ -20,7 +20,7 @@ export default class Register extends Component {
       <View style={styles.container}>
         {/* Header */}
         <CardStackHeader left={<BackButton />} />
-        <FormTemplate />
+        <Form navigation={navigation} />
       </View>
     );
   }

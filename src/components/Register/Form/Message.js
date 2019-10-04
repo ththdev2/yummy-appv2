@@ -12,7 +12,7 @@ const messages = [
 
 @inject('register')
 @observer
-export default class FormMessage extends Component {
+export default class Message extends Component {
   render() {
     const { step } = this.props.register;
     return (
@@ -25,6 +25,7 @@ export default class FormMessage extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    paddingHorizontal: 20,
     marginBottom: 30
   },
   message: {
