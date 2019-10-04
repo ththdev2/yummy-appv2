@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
-import { inject, observer } from 'mobx-react';
-import Colors from '../../../../constants/Colors';
-import DatePicker from '../Picker/DatePicker';
+import React, { Component } from "react";
+import { View, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import { inject, observer } from "mobx-react";
+import Colors from "../../../../constants/Colors";
+import DatePicker from "../Picker/DatePicker";
 
-@inject('register')
+@inject("register")
 @observer
 export default class Birth extends Component {
   constructor() {
@@ -16,10 +16,10 @@ export default class Birth extends Component {
     const { birth } = this.props.register;
 
     const date = birth;
-    const year = date ? date.getFullYear() : '';
-    const month = date ? `${date.getMonth() + 1}`.padStart(2, '0') : '';
-    const day = date ? `${date.getDate()}`.padStart(2, '0') : '';
-    const dateStr = date ? `${year}.${month}.${day}` : '';
+    const year = date ? date.getFullYear() : "";
+    const month = date ? `${date.getMonth() + 1}`.padStart(2, "0") : "";
+    const day = date ? `${date.getDate()}`.padStart(2, "0") : "";
+    const dateStr = date ? `${year}.${month}.${day}` : "";
 
     onClose = () => {
       this.setState({ modalVisible: false });
@@ -29,10 +29,11 @@ export default class Birth extends Component {
       <View style={styles.container}>
         <Text style={styles.label}>Date of birth</Text>
         <TouchableWithoutFeedback
-          style={this.state.focus ? styles.focus : styles.input}
           onPress={() => this.setState({ modalVisible: true })}
         >
-          <Text style={styles.text}>{dateStr}</Text>
+          <View style={this.state.focus ? styles.focus : styles.input}>
+            <Text style={styles.text}>{dateStr}</Text>
+          </View>
         </TouchableWithoutFeedback>
         <DatePicker visible={this.state.modalVisible} parent={this} />
       </View>
@@ -50,13 +51,13 @@ const styles = StyleSheet.create({
   },
   focus: {
     height: 50,
-    justifyContent: 'center',
+    justifyContent: "center",
     borderBottomColor: Colors.tint,
     borderBottomWidth: 2
   },
   input: {
     height: 50,
-    justifyContent: 'center',
+    justifyContent: "center",
     borderBottomColor: Colors.gray0,
     borderBottomWidth: 2
   },

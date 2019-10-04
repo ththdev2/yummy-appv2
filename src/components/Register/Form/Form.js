@@ -1,24 +1,30 @@
-import React, { Component } from 'react';
-import { Text, StyleSheet, View, ScrollView } from 'react-native';
-import Message from './Message';
-import FieldsController from './FieldsController';
-import Submit from './Submit';
+import React, { Component } from "react";
+import { Text, StyleSheet, View, ScrollView } from "react-native";
+import Message from "./Message";
+import FieldsController from "./FieldsController";
+import Submit from "./Submit";
+import InputAccessory from "./InputAccessory";
 
 export default class Form extends Component {
   render() {
     const { navigation } = this.props;
     return (
-      <ScrollView>
-        <View style={styles.container}>
+      <View style={styles.container}>
+        <View>
           <Message />
           <FieldsController navigation={navigation} />
-          <Submit />
         </View>
-      </ScrollView>
+        <Submit />
+        <InputAccessory />
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {}
+  container: {
+    flex: 1,
+    justifyContent: "space-between",
+    paddingBottom: 60
+  }
 });

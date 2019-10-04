@@ -1,33 +1,26 @@
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import MainTabNavigator from '../navigation/MainTabNavigator';
+import { createAppContainer, createSwitchNavigator } from "react-navigation";
+import MainTabNavigator from "../navigation/MainTabNavigator";
 import {
   createStackNavigator,
   TransitionPresets
-} from 'react-navigation-stack';
+} from "react-navigation-stack";
 
-import AppLoading from '../screens/AppLoading';
-import Login from '../screens/Login/Login';
-import Register from '../screens/Register/Register';
-import DatePicker from '../screens/Register/DatePicker';
+import AppLoading from "../screens/AppLoading";
+import Login from "../screens/Login/Login";
+import Register from "../screens/Register/Register";
 
 const LoginStack = createStackNavigator(
   {
     Login
   },
-  { headerMode: 'none' }
+  { headerMode: "none" }
 );
 
 const RegisterStack = createStackNavigator(
   {
-    Register,
-    DatePicker
+    Register
   },
-  {
-    headerMode: 'none',
-    mode: 'modal',
-    transparentCard: true,
-    cardOverlayEnabled: true
-  }
+  { headerMode: "none" }
 );
 const Auth = createStackNavigator(
   {
@@ -35,7 +28,7 @@ const Auth = createStackNavigator(
     Register: RegisterStack
   },
   {
-    headerMode: 'none'
+    headerMode: "none"
   }
 );
 

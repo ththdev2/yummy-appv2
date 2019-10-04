@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { observer, inject } from 'mobx-react';
-import { Name, Birth, Email, Password } from './Fields';
+import React, { Component } from "react";
+import { View, Text, StyleSheet } from "react-native";
+import { observer, inject } from "mobx-react";
+import { Name, Birth, Email, Password } from "./Fields";
 
-@inject('register')
+@inject("register")
 @observer
 export default class FieldsController extends Component {
   render() {
@@ -24,6 +24,6 @@ export default class FieldsController extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'column-reverse'
+    flexDirection: "column-reverse"
   }
 });
