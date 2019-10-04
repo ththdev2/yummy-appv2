@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action } from "mobx";
 
 export default class RegisterStore {
   constructor(root) {
@@ -7,10 +7,10 @@ export default class RegisterStore {
 
   @observable step = 4;
   @observable values = {
-    name: '',
+    name: "",
     birth: new Date(),
-    email: '',
-    password: ''
+    email: "",
+    password: ""
   };
   @observable canSubmit = false;
 
@@ -34,6 +34,6 @@ export default class RegisterStore {
 
   @action
   register = () => {
-    console.log('Register');
+    console.log("Register");
   };
 }

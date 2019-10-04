@@ -1,18 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   Text,
   StyleSheet,
   View,
   TextInput,
   Modal,
-  DatePickerIOS
-} from 'react-native';
-import Colors from '../../../constants/Colors';
-import { inject, observer } from 'mobx-react';
-import { observable, action } from 'mobx';
-import FormDatePicker from './FormDatePicker';
+  DatePickerIOS,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+  Keyboard
+} from "react-native";
+import Colors from "../../../constants/Colors";
+import { inject, observer } from "mobx-react";
+import { observable, action } from "mobx";
+import FormDatePicker from "./FormDatePicker";
 
-@inject('register')
+@inject("register")
 @observer
 export default class FormDateInput extends Component {
   @observable focus = false;
@@ -20,15 +23,15 @@ export default class FormDateInput extends Component {
 
   @action.bound
   onFocus() {
-    this.focus = true;
+    Keyboard.dismiss();
     this.modalVisible = true;
-    console.log(this.modalVisible);
+    this.focus = true;
   }
 
   @action.bound
   onBlur() {
     this.focus = false;
-    this.modalVisible = false;
+    this.modalVisible = true;
   }
 
   render() {
@@ -36,20 +39,20 @@ export default class FormDateInput extends Component {
     const { values, onDateChange } = register;
 
     const date = values.birth;
-    const year = date ? date.getFullYear() : '';
-    const month = date ? `${date.getMonth() + 1}`.padStart(2, '0') : '';
-    const day = date ? `${date.getDate()}`.padStart(2, '0') : '';
+    const year = date ? date.getFullYear() : "";
+    const month = date ? `${date.getMonth() + 1}`.padStart(2, "0") : "";
+    const day = date ? `${date.getDate()}`.padStart(2, "0") : "";
 
     return (
       <View style={styles.container}>
         <Text>{label}</Text>
         <TextInput
-          value={date ? `${year}.${month}.${day}` : ''}
+          value={date ? `${year}.${month}.${day}` : ""}
           style={styles.input}
           onFocus={this.onFocus}
           onBlur={this.onBlur}
         />
-        <FormDatePicker visible={this.modalVisible} />
+        <FormDatePicker visible={this.modalVisible} onBlur={this.onBlur} />
       </View>
     );
   }
@@ -61,7 +64,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 50,
-    justifyContent: 'center',
+    justifyContent: "center",
     borderBottomWidth: 2,
     borderBottomColor: Colors.gray0,
     fontSize: 18
