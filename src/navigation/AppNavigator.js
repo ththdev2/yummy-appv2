@@ -1,27 +1,32 @@
-import { createAppContainer, createSwitchNavigator } from "react-navigation"
-import MainTabNavigator from "../navigation/MainTabNavigator"
-import { createStackNavigator, TransitionPresets } from "react-navigation-stack"
+import { createAppContainer, createSwitchNavigator } from "react-navigation";
+import MainTabNavigator from "../navigation/MainTabNavigator";
+import {
+  createStackNavigator,
+  TransitionPresets
+} from "react-navigation-stack";
 
-import AppLoading from "../screens/AppLoading"
-import Start from "../screens/Login/Start"
-import Login from "../screens/Login/Login"
-import Register from "../screens/Register/Register"
+import AppLoading from "../screens/AppLoading";
+import Start from "../screens/Auth/Start";
+import SignIn from "../screens/Auth/SignIn";
+import SignUp from "../screens/Auth/SignUp";
+import Configure from "../screens/Auth/Configure";
 
 const AuthStack = createStackNavigator(
-	{
-		Start: Start,
-		Login: Login,
-		Register: Register,
-	},
-	{
-		headerMode: "none",
-	},
-)
+  {
+    Start,
+    SignIn,
+    SignUp,
+    Configure
+  },
+  {
+    headerMode: "none"
+  }
+);
 
 export default createAppContainer(
-	createSwitchNavigator({
-		AppLoading,
-		Auth: AuthStack,
-		Main: MainTabNavigator,
-	}),
-)
+  createSwitchNavigator({
+    AppLoading,
+    Auth: AuthStack,
+    Main: MainTabNavigator
+  })
+);

@@ -1,26 +1,18 @@
-import React, { Component } from "react"
-import { Text, StyleSheet, View } from "react-native"
-import Loading from "../components/Base/Loading"
+import React, { Component } from "react";
+import { Text, StyleSheet, View } from "react-native";
+import Loading from "../components/Base/Loading";
 
 export default class AppLoading extends Component {
-	componentDidMount = () => {
-		const { navigation } = this.props
-		navigation.navigate("Start")
-	}
+  componentDidMount = () => {
+    const { navigation } = this.props;
+    navigation.navigate("Configure");
+  };
 
-	render() {
-		return (
-			<View style={styles.container}>
-				<Loading />
-			</View>
-		)
-	}
+  render() {
+    return (
+      <View>
+        <Loading />
+      </View>
+    );
+  }
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
-	},
-})
