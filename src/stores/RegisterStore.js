@@ -1,39 +1,42 @@
-import { observable, action } from 'mobx';
+import { observable, action } from "mobx"
 
 export default class RegisterStore {
-  constructor(root) {
-    this.root = root;
-  }
+	constructor(root) {
+		this.root = root
+	}
 
-  @observable step = 4;
-  @observable name = '';
-  @observable birth = new Date();
-  @observable email = '';
-  @observable password = '';
-  @observable canSubmit = false;
+	@observable step = 0
+	@observable name = ""
+	@observable birth = null
+	@observable email = ""
+	@observable password = ""
+	@observable canSubmit = false
 
-  @action.bound
-  onChange = (name, value, rules) => {
-    this[name] = value;
+	@action.bound
+	onChange = (name, value, rules) => {
+		this[name] = value
 
-    if (rules) {
-      this.check(rules);
-    }
-  };
+		if (rules) {
+			this.check(rules, value)
+		}
+	}
 
-  @action
-  onSubmit = () => {
-    this.step < 4 ? this.step++ : this.register();
-    this.canSubmit = false;
-  };
+	@action
+	onSubmit = () => {
+		if (this.canSubmit) {
+			this.step < 4 ? this.step++ : this.register()
+			this.canSubmit = false
+		}
+	}
 
-  @action
-  check(rules) {
-    console.log(rules);
-  }
+	@action.bound
+	check(rules, value) {
+		rules(value) ? (this.canSubmit = true) : (this.canSubmit = false)
+		console.log(rules(value))
+	}
 
-  @action
-  register = () => {
-    console.log('Register');
-  };
+	@action
+	register = () => {
+		console.log("Register")
+	}
 }

@@ -1,30 +1,36 @@
-import React, { Component } from "react";
-import { Text, StyleSheet, View, ScrollView } from "react-native";
-import Message from "./Message";
-import FieldsController from "./FieldsController";
-import Submit from "./Submit";
-import InputAccessory from "./InputAccessory";
+import React, { Component } from "react"
+import { Text, StyleSheet, View, ScrollView } from "react-native"
+import { KeyboardAccessoryView } from "react-native-keyboard-accessory"
+import Colors from "../../../constants/Colors"
+import { inject, observer } from "mobx-react"
 
+import Message from "./Message"
+import FieldsController from "./FieldsController"
+import Submit from "./Submit"
+import InputAccessoryButton from "./InputAccessoryButton"
+
+@inject("register")
+@observer
 export default class Form extends Component {
-  render() {
-    const { navigation } = this.props;
-    return (
-      <View style={styles.container}>
-        <View>
-          <Message />
-          <FieldsController navigation={navigation} />
-        </View>
-        <Submit />
-        <InputAccessory />
-      </View>
-    );
-  }
+	render() {
+		const { canSubmit } = this.props.register
+		return (
+			<View style={{ flex: 1 }}>
+				<ScrollView
+					showsVerticalScrollIndicator={false}
+					keyboardDismissMode="interactive"
+				>
+					<Message />
+					<FieldsController />
+				</ScrollView>
+				<Submit />
+				<KeyboardAccessoryView
+					visibleOpacity={canSubmit ? 1 : 0}
+					hideBorder={true}
+				>
+					<InputAccessoryButton />
+				</KeyboardAccessoryView>
+			</View>
+		)
+	}
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "space-between",
-    paddingBottom: 60
-  }
-});

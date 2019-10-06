@@ -1,52 +1,39 @@
-import React, { Component } from 'react';
-import { Text, StyleSheet, View, TextInput } from 'react-native';
-import { inject, observer } from 'mobx-react';
-import Colors from '../../../../constants/Colors';
+import React, { Component } from "react"
+import { Text, StyleSheet, View } from "react-native"
+import { observable, action } from "mobx"
+import { inject, observer } from "mobx-react"
+import { Container, Label, Field, TextInput } from "./styles"
+import Check from "./Check"
 
-@inject('register')
+@inject("register")
 @observer
 export default class Email extends Component {
-  constructor() {
-    super();
-    this.state = { focus: false };
-  }
-  render() {
-    const { email, onChange } = this.props.register;
-    return (
-      <View style={styles.container}>
-        <Text style={styles.label}>Email</Text>
-        <TextInput
-          value={email}
-          onChange={newValue => onChange('email', newValue)}
-          onFocus={() => this.setState({ focus: true })}
-          onBlur={() => this.setState({ focus: false })}
-          style={this.state.focus ? styles.focus : styles.input}
-        />
-      </View>
-    );
-  }
-}
+	@observable focus = false
 
-const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 20,
-    marginBottom: 20
-  },
-  label: {
-    fontSize: 14
-  },
-  focus: {
-    height: 50,
-    justifyContent: 'center',
-    borderBottomColor: Colors.tint,
-    borderBottomWidth: 2,
-    fontSize: 18
-  },
-  input: {
-    height: 50,
-    justifyContent: 'center',
-    borderBottomColor: Colors.gray0,
-    borderBottomWidth: 2,
-    fontSize: 18
-  }
-});
+	@action.bound
+	setFocus(state) {
+		this.focus = state
+	}
+
+	render() {
+		const { email, onChange, onSubmit } = this.props.register
+		const rules = value => value != ""
+		return (
+			<Container>
+				<Label>Email</Label>
+				<Field focused={this.focus}>
+					<TextInput
+						autoCapitalize="none"
+						value={email}
+						onChangeText={newValue => onChange("email", newValue, rules)}
+						onFocus={() => this.setFocus(true)}
+						onBlur={() => this.setFocus(false)}
+						keyboardType="email-address"
+						onSubmitEditing={onSubmit}
+					/>
+					<Check visible={rules(email)} />
+				</Field>
+			</Container>
+		)
+	}
+}

@@ -1,35 +1,35 @@
-import React, { Component } from 'react';
-import { Text, StyleSheet, View } from 'react-native';
-import { inject, observer } from 'mobx-react';
+import React, { Component } from "react"
+import { inject, observer } from "mobx-react"
+import styled from "styled-components/native"
 
 const messages = [
-  "What's your name?",
-  'What is your date of birth?',
-  'Please enter your email',
-  'please enter password',
-  'Please register if the information is correct'
-];
+	"What's your name?",
+	"What is your date of birth?",
+	"Please enter your email",
+	"Please enter password",
+	"Please register if the information is correct",
+]
 
-@inject('register')
+const Container = styled.View`
+	padding-left: 20;
+	padding-right: 20;
+	margin-bottom: 30;
+`
+
+const MessageText = styled.Text`
+	font-size: 24;
+	font-weight: bold;
+`
+
+@inject("register")
 @observer
 export default class Message extends Component {
-  render() {
-    const { step } = this.props.register;
-    return (
-      <View style={styles.container}>
-        <Text style={styles.message}>{messages[step]}</Text>
-      </View>
-    );
-  }
+	render() {
+		const { step } = this.props.register
+		return (
+			<Container>
+				<MessageText>{messages[step]}</MessageText>
+			</Container>
+		)
+	}
 }
-
-const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 20,
-    marginBottom: 30
-  },
-  message: {
-    fontSize: 24,
-    fontWeight: 'bold'
-  }
-});
